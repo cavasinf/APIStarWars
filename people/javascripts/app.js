@@ -2,30 +2,21 @@ $( document ).ready(function() {
 
         $('#header').load('/SourceTree/swapi/blocks/header.html');
 
-        $.getJSON("https://swapi.co/api/starships/?format=json", function(data){
-            // count: 37​
-            // next: https://swapi.co/api/starships/?page=2&format=json
-            // previous: null
-            // results: Array(10)
+        $.getJSON("https://swapi.co/api/people/?format=json", function(data){
+            // count	87
+            // next	"https://swapi.co/api/people/?page=2&format=json"
+            // previous	null
+            // results
 
-            // MGLT: "40"
-            // cargo_capacity: "250000000"
-            // consumables: "6 years"
-            // cost_in_credits: "1143350000"
-            // created: "2014-12-15T12:31:42.547000Z"
-            // crew: "279144"
-            // edited: "2017-04-19T10:56:06.685592Z"
-            // films: Array [ "https://swapi.co/api/films/2/", "https://swapi.co/api/films/3/" ]
-            // hyperdrive_rating: "2.0"
-            // length: "19000"
-            // manufacturer: "Kuat Drive Yards, Fondor Shipyards"
-            // max_atmosphering_speed: "n/a"
-            // model: "Executor-class star dreadnought"
-            // name: "Executor"
-            // passengers: "38000"
-            // pilots: Array []
-            // starship_class: "Star dreadnought"
-            // url: "https://swapi.co/api/starships/15/"
+            // name	"Luke Skywalker"
+            // height	"172"
+            // mass	"77"
+            // hair_color	"blond"
+            // skin_color	"fair"
+            // eye_color	"blue"
+            // birth_year	"19BBY"
+            // gender	"male"
+            // homeworld	"https://swapi.co/api/planets/1/"
 
             console.log(data.results);
 
@@ -33,45 +24,35 @@ $( document ).ready(function() {
                 var gDiv = document.createElement( "div" );
                 gDiv.className = "ship col-md-4 col-md-offset-4";
 
-                var divName = document.createElement( "div" );
-                divName.innerHTML = value.name;
-                divName.className = "ship-name";
-                gDiv.append(divName);
+                var divHeight = document.createElement( "div" );
+                divHeight.innerHTML = value.height;
+                divHeight.className = "people-height";
+                gDiv.append(divHeight);
 
-                var divModel = document.createElement( "div" );
-                divModel.innerHTML = "Model : " + value.model;
-                divModel.className = "ship-model";
-                gDiv.append(divModel);
+                var divMass = document.createElement( "div" );
+                divMass.innerHTML = value.mass;
+                divMass.className = "people-mass";
+                gDiv.append(divMass);
 
-                var divPrice = document.createElement( "div" );
-                divPrice.innerHTML = "Price : " + (value.cost_in_credits).toLocaleString('en-en') + " $";
-                divPrice.className = "ship-price";
-                gDiv.append(divPrice);
+                var divHair_color = document.createElement( "div" );
+                divHair_color.innerHTML = "Model : " + value.hair_color;
+                divHair_color.className = "ship-hair_color";
+                gDiv.append(divHair_color);
 
-                var divPassenger = document.createElement( "div" );
-                divPassenger.innerHTML = "Passenger max : " + value.passengers;
-                divPassenger.className = "ship-passenger";
-                gDiv.append(divPassenger);
+                var divSkin_color = document.createElement( "div" );
+                divSkin_color.innerHTML = "Model : " + value.skin_color;
+                divSkin_color.className = "ship-skin_color";
+                gDiv.append(divSkin_color);
 
-                var divLenght = document.createElement( "div" );
-                divLenght.innerHTML = "Lenght : " + value.length;
-                divLenght.className = "ship-lenght";
-                gDiv.append(divLenght);
+                var divEye_color = document.createElement( "div" );
+                divEye_color.innerHTML = "Model : " + value.eye_color;
+                divEye_color.className = "ship-eye_color";
+                gDiv.append(divEye_color);
 
-                var divManufacturer = document.createElement( "div" );
-                divManufacturer.innerHTML = "Manufacturer : " + value.manufacturer;
-                divManufacturer.className = "ship-manufacturer";
-                gDiv.append(divManufacturer);
-
-                var divClass = document.createElement( "div" );
-                divClass.innerHTML = "Class : " + value.starship_class;
-                divClass.className = "ship-class";
-                gDiv.append(divClass);
-
-                var divCargo = document.createElement( "div" );
-                divCargo.innerHTML = "Carego capacity : " + value.cargo_capacity;
-                divCargo.className = "ship-cargo";
-                gDiv.append(divCargo);
+                var divEye_color = document.createElement( "div" );
+                divEye_color.innerHTML = "Model : " + value.eye_color;
+                divEye_color.className = "ship-eye_color";
+                gDiv.append(divEye_color);
 
                 if (value.pilots.length > 0) {
                     var divPilots = document.createElement( "div" );
