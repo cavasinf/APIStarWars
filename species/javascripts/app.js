@@ -2,126 +2,87 @@ $( document ).ready(function() {
 
         $('#header').load(blocksFolderLocation+"/header.html");
 
-        $.getJSON("https://swapi.co/api/starships/?format=json", function(data){
+        $.getJSON("https://swapi.co/api/species/?format=json", function(data){
             // count: 37​
-            // next: https://swapi.co/api/starships/?page=2&format=json
+            // next: https://swapi.co/api/species/?page=2&format=json
             // previous: null
             // results: Array(10)
 
-            // MGLT: "40"
-            // cargo_capacity: "250000000"
-            // consumables: "6 years"
-            // cost_in_credits: "1143350000"
-            // created: "2014-12-15T12:31:42.547000Z"
-            // crew: "279144"
-            // edited: "2017-04-19T10:56:06.685592Z"
-            // films: Array [ "https://swapi.co/api/films/2/", "https://swapi.co/api/films/3/" ]
-            // hyperdrive_rating: "2.0"
-            // length: "19000"
-            // manufacturer: "Kuat Drive Yards, Fondor Shipyards"
-            // max_atmosphering_speed: "n/a"
-            // model: "Executor-class star dreadnought"
-            // name: "Executor"
-            // passengers: "38000"
-            // pilots: Array []
-            // starship_class: "Star dreadnought"
-            // url: "https://swapi.co/api/starships/15/"
+            // "name": "Hutt",
+            // "classification": "gastropod",
+            // "designation": "sentient",
+            // "average_height": "300",
+            // "skin_colors": "green, brown, tan",
+            // "hair_colors": "n/a",
+            // "eye_colors": "yellow, red",
+            // "average_lifespan": "1000",
+            // "homeworld": "https://swapi.co/api/planets/24/",
+            // "language": "Huttese",
+            // "people": [],
+            // "films": [],
+            // "created": "2014-12-10T17:12:50.410000Z",
+            // "edited": "2014-12-20T21:36:42.146000Z",
+            // "url": "https://swapi.co/api/species/5/"
 
             console.log(data.results);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );
-                gDiv.className = "ship col-md-4 col-md-offset-4";
+                gDiv.className = "specie col-md-4 col-md-offset-4";
 
                 var divName = document.createElement( "div" );
                 divName.innerHTML = value.name;
-                divName.className = "ship-name";
+                divName.className = "specie-name";
                 gDiv.append(divName);
 
-                var divModel = document.createElement( "div" );
-                divModel.innerHTML = "Model : " + value.model;
-                divModel.className = "ship-model";
-                gDiv.append(divModel);
+                var divClassification = document.createElement( "div" );
+                divClassification.innerHTML = "Classification : " + value.classification;
+                divClassification.className = "specie-classification";
+                gDiv.append(divClassification);
 
-                var divPrice = document.createElement( "div" );
-                divPrice.innerHTML = "Price : " + (value.cost_in_credits).toLocaleString('en-en') + " $";
-                divPrice.className = "ship-price";
-                gDiv.append(divPrice);
+                var divDesignation = document.createElement( "div" );
+                divDesignation.innerHTML = "Designation : " + value.designation;
+                divDesignation.className = "specie-designation";
+                gDiv.append(divDesignation);
 
-                var divPassenger = document.createElement( "div" );
-                divPassenger.innerHTML = "Passenger max : " + value.passengers;
-                divPassenger.className = "ship-passenger";
-                gDiv.append(divPassenger);
+                var divLanguage = document.createElement( "div" );
+                divLanguage.innerHTML = "Language : " + value.language;
+                divLanguage.className = "specie-language";
+                gDiv.append(divLanguage);
 
-                var divLenght = document.createElement( "div" );
-                divLenght.innerHTML = "Lenght : " + value.length;
-                divLenght.className = "ship-lenght";
-                gDiv.append(divLenght);
+                var divAverage_height = document.createElement( "div" );
+                divAverage_height.innerHTML = "Average height : " + value.average_height;
+                divAverage_height.className = "specie-average_height";
+                gDiv.append(divAverage_height);
 
-                var divManufacturer = document.createElement( "div" );
-                divManufacturer.innerHTML = "Manufacturer : " + value.manufacturer;
-                divManufacturer.className = "ship-manufacturer";
-                gDiv.append(divManufacturer);
+                var divSkin_colors = document.createElement( "div" );
+                divSkin_colors.innerHTML = "Skin colors : " + value.skin_colors;
+                divSkin_colors.className = "specie-skin_colors";
+                gDiv.append(divSkin_colors);
 
-                var divClass = document.createElement( "div" );
-                divClass.innerHTML = "Class : " + value.starship_class;
-                divClass.className = "ship-class";
-                gDiv.append(divClass);
+                var divHair_colors = document.createElement( "div" );
+                divHair_colors.innerHTML = "Hair colors : " + value.hair_colors;
+                divHair_colors.className = "specie-hair_colors";
+                gDiv.append(divHair_colors);
 
-                var divCargo = document.createElement( "div" );
-                divCargo.innerHTML = "Carego capacity : " + value.cargo_capacity;
-                divCargo.className = "ship-cargo";
-                gDiv.append(divCargo);
+                var divAverage_lifespan = document.createElement( "div" );
+                divAverage_lifespan.innerHTML = "Average lifespan : " + value.average_lifespan;
+                divAverage_lifespan.className = "specie-average_lifespan";
+                gDiv.append(divAverage_lifespan);
 
-                if (value.pilots.length > 0) {
-                    var divPilots = document.createElement( "div" );
-                    divPilots.innerHTML = "Pilots : </br>";
-                    divPilots.className = "ship-pilot-list";
-
-                    $.each(value.pilots, function(index, value) {
-                        var divPilot = document.createElement( "div" );
-
-                        var rest = value.slice(0,-1);
-                        var last = rest.substring(rest.lastIndexOf("/"), rest.length);
-                        last = last.substr(1);
-
-                        $.getJSON("https://swapi.co/api/people/"+last+"/?format=json", function(data) {
-
-                                divPilot.innerHTML = "<a href= ../people/" + last + ">" + data.name + "";
-                        });
-                        divPilot.className = "ship-pilot";
-
-                        divPilots.append(divPilot);
+                if (value.homeworld != "") {
+                    var divHomeworld = document.createElement("div");
+                    var rest = value.homeworld.slice(0, -1);
+                    var last = rest.substring(rest.lastIndexOf("/"), rest.length);
+                    last = last.substr(1);
+                    $.getJSON("https://swapi.co/api/planets/" + last + "/?format=json", function (data) {
+                        divHomeworld.innerHTML = "Homeworld : <a href= ../planets/" + last + ">" + data.name + "";
                     });
-
-                    gDiv.append(divPilots);
+                    divHomeworld.className = "people-homeworld";
+                    gDiv.append(divHomeworld);
                 }
 
-                if (value.films.length > 0) {
-                    var divFilms = document.createElement( "div" );
-                    divFilms.innerHTML = "Films : </br>";
-                    divFilms.className = "ship-film-list";
-
-                    $.each(value.films, function(index, value) {
-                        var divFilm = document.createElement( "div" );
-
-                        var rest = value.slice(0,-1);
-                        var last = rest.substring(rest.lastIndexOf("/"), rest.length);
-                        last = last.substr(1);
-
-                        $.getJSON("https://swapi.co/api/films/"+last+"/?format=json", function(data) {
-
-                            divFilm.innerHTML = "<a href= ../films/" + last + ">" + data.title + "";
-                        });
-                        divFilm.className = "ship-film";
-
-                        divFilms.append(divFilm);
-                    });
-
-                    gDiv.append(divFilms);
-                }
-
-                $(".starship-list").append(gDiv);
+                $(".specie-list").append(gDiv);
             });
         });
 
