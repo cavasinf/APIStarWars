@@ -103,6 +103,78 @@ $( document ).ready(function() {
                     gDiv.append(divFilms);
                 }
 
+                if (value.species.length > 0) {
+                    var divSpecies = document.createElement( "div" );
+                    divSpecies.innerHTML = "Species : </br>";
+                    divSpecies.className = "people-specie-list";
+
+                    $.each(value.species, function(index, value) {
+                        var divSpecie = document.createElement( "div" );
+
+                        var rest = value.slice(0,-1);
+                        var last = rest.substring(rest.lastIndexOf("/"), rest.length);
+                        last = last.substr(1);
+                        console.log("https://swapi.co/api/species/"+last+"/?format=json")
+                        $.getJSON("https://swapi.co/api/species/"+last+"/?format=json", function(data) {
+
+                            divSpecie.innerHTML = "<a href= ../species/" + last + ">" + data.name + "";
+                        });
+                        divSpecie.className = "people-film";
+
+                        divSpecies.append(divSpecie);
+                    });
+
+                    gDiv.append(divSpecies);
+                }
+
+                if (value.vehicles.length > 0) {
+                    var divVehicles = document.createElement( "div" );
+                    divVehicles.innerHTML = "Vehicles : </br>";
+                    divVehicles.className = "people-vehicle-list";
+
+                    $.each(value.vehicles, function(index, value) {
+                        var divVehicle = document.createElement( "div" );
+
+                        var rest = value.slice(0,-1);
+                        var last = rest.substring(rest.lastIndexOf("/"), rest.length);
+                        last = last.substr(1);
+
+                        $.getJSON("https://swapi.co/api/vehicles/"+last+"/?format=json", function(data) {
+
+                            divVehicle.innerHTML = "<a href= ../vehicles/" + last + ">" + data.name + "";
+                        });
+                        divVehicle.className = "people-vehicle";
+
+                        divVehicles.append(divVehicle);
+                    });
+
+                    gDiv.append(divVehicles);
+                }
+
+                if (value.starships.length > 0) {
+                    var divStarships = document.createElement( "div" );
+                    divStarships.innerHTML = "Starships : </br>";
+                    divStarships.className = "people-starship-list";
+
+                    $.each(value.starships, function(index, value) {
+                        var divStarship = document.createElement( "div" );
+
+                        var rest = value.slice(0,-1);
+                        var last = rest.substring(rest.lastIndexOf("/"), rest.length);
+                        last = last.substr(1);
+
+                        $.getJSON("https://swapi.co/api/starships/"+last+"/?format=json", function(data) {
+
+                            divStarship.innerHTML = "<a href= ../starships/" + last + ">" + data.name + "";
+                        });
+                        divStarship.className = "people-starship";
+
+                        divStarships.append(divStarship);
+                    });
+
+                    gDiv.append(divStarships);
+                }
+
                 $(".people-list").append(gDiv);
             });
         });
