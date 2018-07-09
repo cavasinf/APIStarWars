@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-        $('#header').load('/SourceTree/swapi/blocks/header.html');
+        $('#header').load(blocksFolderLocation+"/header.html");
 
         $.getJSON("https://swapi.co/api/starships/?format=json", function(data){
             // count: 37​
@@ -126,7 +126,7 @@ $( document ).ready(function() {
         });
 
 
-    $('#footer').load('/SourceTree/swapi/blocks/footer.html');
+    $('#footer').load(blocksFolderLocation+"/footer.html");
 
     $('.loader').addClass("fadeOut")
 

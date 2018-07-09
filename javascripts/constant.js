@@ -1,0 +1,1 @@
+let blocksFolderLocation = "/APIStarWars/blocks";
