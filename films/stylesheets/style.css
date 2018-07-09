@@ -43,19 +43,19 @@
 
 }
 
-.ship {
+.film {
     display: inline-block;
     margin: 1vmin 0;
     vertical-align: top;
     color: white;
 }
 
-.ship-name {
+.film-title {
     font-weight: bold;
     font-size: 1.5em;
 }
 
-.ship-film, .ship-pilot {
+.film-specie, .film-character, .film-starship {
     padding: 0 1vmin;
 }
 

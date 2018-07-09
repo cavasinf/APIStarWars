@@ -2,84 +2,60 @@ $( document ).ready(function() {
 
         $('#header').load(blocksFolderLocation+"/header.html");
 
-        $.getJSON("https://swapi.co/api/starships/?format=json", function(data){
-            // count: 37​
-            // next: https://swapi.co/api/starships/?page=2&format=json
-            // previous: null
-            // results: Array(10)
+        $.getJSON("https://swapi.co/api/films/?format=json", function(data){
+            // "count": 7,
+            // "next": null,
+            // "previous": null,
+            // "results": []
 
-            // MGLT: "40"
-            // cargo_capacity: "250000000"
-            // consumables: "6 years"
-            // cost_in_credits: "1143350000"
-            // created: "2014-12-15T12:31:42.547000Z"
-            // crew: "279144"
-            // edited: "2017-04-19T10:56:06.685592Z"
-            // films: Array [ "https://swapi.co/api/films/2/", "https://swapi.co/api/films/3/" ]
-            // hyperdrive_rating: "2.0"
-            // length: "19000"
-            // manufacturer: "Kuat Drive Yards, Fondor Shipyards"
-            // max_atmosphering_speed: "n/a"
-            // model: "Executor-class star dreadnought"
-            // name: "Executor"
-            // passengers: "38000"
-            // pilots: Array []
-            // starship_class: "Star dreadnought"
-            // url: "https://swapi.co/api/starships/15/"
+            // "title": "A New Hope",
+            // "episode_id": 4,
+            // "opening_crawl": "It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal secret\r\nplans to the Empire's\r\nultimate weapon, the DEATH\r\nSTAR, an armored space\r\nstation with enough power\r\nto destroy an entire planet.\r\n\r\nPursued by the Empire's\r\nsinister agents, Princess\r\nLeia races home aboard her\r\nstarship, custodian of the\r\nstolen plans that can save her\r\npeople and restore\r\nfreedom to the galaxy...."
+            // "director": "George Lucas",
+            // "producer": "Gary Kurtz, Rick McCallum",
+            // "release_date": "1977-05-25",
+            // "characters": [],
+            // "planets": [],
+            // "starships": [],
+            // "vehicles": [],
+            // species": [],
+            // "created": "2014-12-10T14:23:31.880000Z",
+            // "edited": "2015-04-11T09:46:52.774897Z",
+            // "url": "https://swapi.co/api/films/1/"
 
             console.log(data.results);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );
-                gDiv.className = "ship col-md-4 col-md-offset-4";
+                gDiv.className = "film col-md-4 col-md-offset-4";
 
-                var divName = document.createElement( "div" );
-                divName.innerHTML = value.name;
-                divName.className = "ship-name";
-                gDiv.append(divName);
+                var divTitle = document.createElement( "div" );
+                divTitle.innerHTML = value.title;
+                divTitle.className = "film-title";
+                gDiv.append(divTitle);
 
-                var divModel = document.createElement( "div" );
-                divModel.innerHTML = "Model : " + value.model;
-                divModel.className = "ship-model";
-                gDiv.append(divModel);
+                var divOpening_crawl = document.createElement( "div" );
+                divOpening_crawl.innerHTML = "Opening crawl : <i>" + value.opening_crawl+"</i>";
+                divOpening_crawl.className = "film-opening_crawl";
+                gDiv.append(divOpening_crawl);
 
-                var divPrice = document.createElement( "div" );
-                divPrice.innerHTML = "Price : " + (value.cost_in_credits).toLocaleString('en-en') + " $";
-                divPrice.className = "ship-price";
-                gDiv.append(divPrice);
+                var divProducer = document.createElement( "div" );
+                divProducer.innerHTML = "Producer : " + value.producer;
+                divProducer.className = "film-producer";
+                gDiv.append(divProducer);
 
-                var divPassenger = document.createElement( "div" );
-                divPassenger.innerHTML = "Passenger max : " + value.passengers;
-                divPassenger.className = "ship-passenger";
-                gDiv.append(divPassenger);
+                var divDirector = document.createElement( "div" );
+                divDirector.innerHTML = "Director : " + value.director;
+                divDirector.className = "film-director";
+                gDiv.append(divDirector);
 
-                var divLenght = document.createElement( "div" );
-                divLenght.innerHTML = "Lenght : " + value.length;
-                divLenght.className = "ship-lenght";
-                gDiv.append(divLenght);
+                if (value.characters.length > 0) {
+                    var divCharacters = document.createElement( "div" );
+                    divCharacters.innerHTML = "Characters : </br>";
+                    divCharacters.className = "film-character-list";
 
-                var divManufacturer = document.createElement( "div" );
-                divManufacturer.innerHTML = "Manufacturer : " + value.manufacturer;
-                divManufacturer.className = "ship-manufacturer";
-                gDiv.append(divManufacturer);
-
-                var divClass = document.createElement( "div" );
-                divClass.innerHTML = "Class : " + value.starship_class;
-                divClass.className = "ship-class";
-                gDiv.append(divClass);
-
-                var divCargo = document.createElement( "div" );
-                divCargo.innerHTML = "Carego capacity : " + value.cargo_capacity;
-                divCargo.className = "ship-cargo";
-                gDiv.append(divCargo);
-
-                if (value.pilots.length > 0) {
-                    var divPilots = document.createElement( "div" );
-                    divPilots.innerHTML = "Pilots : </br>";
-                    divPilots.className = "ship-pilot-list";
-
-                    $.each(value.pilots, function(index, value) {
-                        var divPilot = document.createElement( "div" );
+                    $.each(value.characters, function(index, value) {
+                        var divCharacter = document.createElement( "div" );
 
                         var rest = value.slice(0,-1);
                         var last = rest.substring(rest.lastIndexOf("/"), rest.length);
@@ -87,41 +63,66 @@ $( document ).ready(function() {
 
                         $.getJSON("https://swapi.co/api/people/"+last+"/?format=json", function(data) {
 
-                                divPilot.innerHTML = "<a href= ../people/" + last + ">" + data.name + "";
+                            divCharacter.innerHTML = "<a href= ../people/" + last + ">" + data.name + "";
                         });
-                        divPilot.className = "ship-pilot";
+                        divCharacter.className = "film-character";
 
-                        divPilots.append(divPilot);
+                        divCharacters.append(divCharacter);
                     });
 
-                    gDiv.append(divPilots);
+                    gDiv.append(divCharacters);
                 }
 
-                if (value.films.length > 0) {
-                    var divFilms = document.createElement( "div" );
-                    divFilms.innerHTML = "Films : </br>";
-                    divFilms.className = "ship-film-list";
 
-                    $.each(value.films, function(index, value) {
-                        var divFilm = document.createElement( "div" );
+                if (value.starships.length > 0) {
+                    var divStarships = document.createElement( "div" );
+                    divStarships.innerHTML = "Starships : </br>";
+                    divStarships.className = "film-starship-list";
+
+                    $.each(value.starships, function(index, value) {
+                        var divStarship = document.createElement( "div" );
 
                         var rest = value.slice(0,-1);
                         var last = rest.substring(rest.lastIndexOf("/"), rest.length);
                         last = last.substr(1);
 
-                        $.getJSON("https://swapi.co/api/films/"+last+"/?format=json", function(data) {
+                        $.getJSON("https://swapi.co/api/starships/"+last+"/?format=json", function(data) {
 
-                            divFilm.innerHTML = "<a href= ../films/" + last + ">" + data.title + "";
+                            divStarship.innerHTML = "<a href= ../starships/" + last + ">" + data.name + "";
                         });
-                        divFilm.className = "ship-film";
+                        divStarship.className = "film-starship";
 
-                        divFilms.append(divFilm);
+                        divStarships.append(divStarship);
                     });
 
-                    gDiv.append(divFilms);
+                    gDiv.append(divStarships);
                 }
 
-                $(".starship-list").append(gDiv);
+                if (value.species.length > 0) {
+                    var divSpecies = document.createElement( "div" );
+                    divSpecies.innerHTML = "Species : </br>";
+                    divSpecies.className = "film-specie-list";
+
+                    $.each(value.species, function(index, value) {
+                        var divSpecie = document.createElement( "div" );
+
+                        var rest = value.slice(0,-1);
+                        var last = rest.substring(rest.lastIndexOf("/"), rest.length);
+                        last = last.substr(1);
+                        console.log("https://swapi.co/api/species/"+last+"/?format=json")
+                        $.getJSON("https://swapi.co/api/species/"+last+"/?format=json", function(data) {
+
+                            divSpecie.innerHTML = "<a href= ../species/" + last + ">" + data.name + "";
+                        });
+                        divSpecie.className = "film-specie";
+
+                        divSpecies.append(divSpecie);
+                    });
+
+                    gDiv.append(divSpecies);
+                }
+
+                $(".film-list").append(gDiv);
             });
         });
 
