@@ -43,19 +43,19 @@
 
 }
 
-.ship {
+.vehicle {
     display: inline-block;
     margin: 1vmin 0;
     vertical-align: top;
     color: white;
 }
 
-.ship-name {
+.vehicle-name {
     font-weight: bold;
     font-size: 1.5em;
 }
 
-.ship-film, .ship-pilot {
+.vehicle-film, .vehicle-pilot {
     padding: 0 1vmin;
 }
 
