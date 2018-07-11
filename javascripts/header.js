@@ -13,8 +13,10 @@ $( document ).ready(function() {
             last = last.substr(1);
             linksAPI.push(value);
             var a = document.createElement( "a" );
-            a.setAttribute("style","width :calc(90% / "+count+" - 10px)")
-            a.setAttribute("href",window.location.href+"../"+last)
+            a.setAttribute("style","width :calc(90% / "+count+" - 10px)");
+            var parameterIndex = window.location.href.indexOf("?")
+            var linkWithoutParameter = window.location.href.slice(0,parameterIndex);
+            a.setAttribute("href",linkWithoutParameter+"/../"+last)
             a.className = "nav-item"
             a.innerHTML = "<div>"+index+"</div>";
             $(".nav-top").append(a);

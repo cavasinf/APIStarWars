@@ -23,7 +23,7 @@ $( document ).ready(function() {
             // "edited": "2015-04-11T09:46:52.774897Z",
             // "url": "https://swapi.co/api/films/1/"
 
-            console.log(data.results);
+            console.log(data.results);            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );

@@ -24,7 +24,7 @@ $( document ).ready(function() {
             // "edited": "2014-12-20T21:36:42.146000Z",
             // "url": "https://swapi.co/api/species/5/"
 
-            console.log(data.results);
+            console.log(data.results);            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );

@@ -27,7 +27,6 @@ function GET(param) {
 
 function CheckForMovingPage(data) {
 
-
         var previousDiv = document.createElement( "div" );
         previousDiv.className = "previous-page col-md-6";
     if (data.previous) {

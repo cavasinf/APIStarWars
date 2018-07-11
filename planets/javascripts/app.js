@@ -32,9 +32,7 @@ $( document ).ready(function() {
             // "edited": "2014-12-20T20:58:18.420000Z",
             // "url": "https://swapi.co/api/planets/2/"
 
-            console.log(data.results);
-
-            CheckForMovingPage(data);
+            console.log(data.results);            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );

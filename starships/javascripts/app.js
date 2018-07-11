@@ -27,7 +27,7 @@ $( document ).ready(function() {
             // starship_class: "Star dreadnought"
             // url: "https://swapi.co/api/starships/15/"
 
-            console.log(data.results);
+            console.log(data.results);            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );

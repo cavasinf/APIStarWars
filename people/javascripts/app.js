@@ -22,7 +22,7 @@ $( document ).ready(function() {
             // "vehicles": [],
             // "starships": []
 
-                console.log(data.results);
+                console.log(data.results);            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 console.log(index)

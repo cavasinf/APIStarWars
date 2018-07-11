@@ -25,7 +25,7 @@ $( document ).ready(function() {
             // "edited": "2014-12-22T18:21:15.523587Z",
             // "url": "https://swapi.co/api/vehicles/4/"
 
-            console.log(data.results);
+            console.log(data.results);            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );
