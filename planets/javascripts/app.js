@@ -1,8 +1,17 @@
 $( document ).ready(function() {
 
+    var $_GET = GET(),
+        page = $_GET['page'],
+        id = $_GET['id'];
+
+    var getJSONLink = "https://swapi.co/api/planets/?";
+    if (page > 0)
+        getJSONLink += "page="+page+"&";
+    getJSONLink += "format=json";
+
         $('#header').load(blocksFolderLocation+"/header.html");
 
-        $.getJSON("https://swapi.co/api/planets/?format=json", function(data){
+        $.getJSON(getJSONLink, function(data){
             // "count": 61,
             // "next": "https://swapi.co/api/planets/?page=2",
             // "previous": null,
@@ -24,6 +33,8 @@ $( document ).ready(function() {
             // "url": "https://swapi.co/api/planets/2/"
 
             console.log(data.results);
+
+            CheckForMovingPage(data);
 
             $.each(data.results, function(index, value) {
                 var gDiv = document.createElement( "div" );

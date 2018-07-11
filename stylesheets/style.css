@@ -46,6 +46,23 @@ body {
     padding: 0;
 }
 
+.page-navigation > div {
+    display: inline-block;
+    width: 50%;
+}
+
+.page-navigation > div a {
+    color: white;
+    font-family: Impact;
+    font-size: 2em;
+    letter-spacing: 0.15em;
+    font-weight:bold;
+}
+
+.next-page {
+    text-align: right;
+}
+
 .footer {
     height: 29vmin;
     background: url(../images/vader-footer.jpg),#1a1a1a;
